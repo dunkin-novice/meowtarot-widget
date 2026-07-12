@@ -13,22 +13,22 @@ page. All three share the same 78-card deck and link through to the full reading
 
 ## What's inside
 
-### 1. Embeddable widget — [`widget.html`](widget.html)
+### 1. Embeddable widget — [`index.html`](index.html)
 
 A single, dependency-free HTML page you can `iframe` anywhere. Pick a spread, draw, and
 each card links to its full meaning on MeowTarot.
 
-Live page: <https://www.meowtarot.com/widget.html> · Copy-paste builder:
+**This repo is the live site: <https://widget.meowtarot.com>** · Copy-paste builder:
 <https://www.meowtarot.com/widgets/>
 
 ```html
-<iframe src="https://www.meowtarot.com/widget.html"
+<iframe src="https://widget.meowtarot.com/"
         width="340" height="600" loading="lazy"
         style="border:0;border-radius:18px" title="Free Tarot Draw by MeowTarot"></iframe>
 ```
 
 Options (query string): `?spread=three` (Past · Present · Future), `?lang=th` (Thai —
-or use [`th/widget.html`](th/widget.html)).
+or use [`th/`](th/index.html)).
 
 ### 2. WordPress plugin — [`wordpress-plugin/`](wordpress-plugin/)
 
