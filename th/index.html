@@ -136,16 +136,23 @@ const CARDS=[{"id":"01-the-fool-upright","s":"the-fool","en":"The Fool","th":"à¸
   const $ = (id) => document.getElementById(id);
   const IMG = (id) => 'https://cdn.meowtarot.com/assets/moonmallow/' + id + '.webp';
   const BACK = 'https://cdn.meowtarot.com/assets/moonmallow/00-back.webp';
-  const U = '?utm_source=widget&utm_medium=embed&utm_campaign=';
+  const source = /^[a-z0-9_-]{1,64}$/.test(params.get('source') || '') ? params.get('source') : 'widget';
+  const trackedUrl = (path, campaign) => {
+    const url = new URL(path, 'https://www.meowtarot.com');
+    url.searchParams.set('utm_source', source);
+    url.searchParams.set('utm_medium', source === 'widget' ? 'embed' : 'referral');
+    url.searchParams.set('utm_campaign', source === 'widget' ? campaign : 'cross_site_widget');
+    return url.href;
+  };
 
   $('eyebrow').textContent = T.eyebrow;
   $('againBtn').textContent = T.again;
   if (promo){
     $('poweredBy').textContent = 'âœ¨ ' + T.getWidget;
-    $('poweredBy').href = 'https://www.meowtarot.com/widgets/' + U + 'getwidget';
+    $('poweredBy').href = trackedUrl('/widgets/', 'getwidget');
   } else {
     $('poweredBy').textContent = 'âœ¨ ' + T.powered;
-    $('poweredBy').href = base + '/' + U + 'poweredby';
+    $('poweredBy').href = trackedUrl(lang === 'th' ? '/th/' : '/', 'poweredby');
   }
 
   const chips = [...document.querySelectorAll('.chip')];
@@ -215,11 +222,11 @@ const CARDS=[{"id":"01-the-fool-upright","s":"the-fool","en":"The Fool","th":"à¸
     if (spread === 'one'){
       keysEl.textContent = lang === 'th' ? cards[0].kt : cards[0].ke;
       read.textContent = T.read;
-      read.href = base + '/cards/' + cards[0].s + '/' + U + 'card';
+      read.href = trackedUrl((lang === 'th' ? '/th' : '') + '/cards/' + cards[0].s + '/', 'card');
     } else {
       keysEl.textContent = '';
       read.textContent = T.readFull;
-      read.href = base + '/question.html' + U + 'spread';
+      read.href = trackedUrl((lang === 'th' ? '/th' : '') + '/question.html', 'spread');
     }
     read.classList.remove('hidden');
     $('drawBtn').classList.add('hidden');
