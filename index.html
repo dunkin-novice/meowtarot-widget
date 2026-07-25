@@ -248,7 +248,7 @@ const CARDS=[{"id":"01-the-fool-upright","s":"the-fool","en":"The Fool","th":"à¸
       const name = (c.em ? c.em + ' ' : '') + (lang === 'th' ? c.th : c.en);
       const wrap = document.createElement('a');
       wrap.className = 'cardwrap reveal';
-      wrap.href = base + '/cards/' + c.s + '/' + U + 'card';
+      wrap.href = trackedUrl((lang === 'th' ? '/th' : '') + '/cards/' + c.s + '/', 'card');
       wrap.target = '_blank'; wrap.rel = 'noopener';
       wrap.style.animationDelay = (i * 90) + 'ms';
       if (spread !== 'one'){ const p = document.createElement('div'); p.className = 'pos'; p.textContent = sp.pos[lang][i]; wrap.appendChild(p); }
